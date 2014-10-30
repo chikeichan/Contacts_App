@@ -43,14 +43,26 @@ $(document).ready(function(){
 		tagName: 'div',
 		className: 'contactCard',
 		events: {
-			'dblclick'	: 'clear'
+			'dblclick'					: 'clear',
+			'click #change'			: 'edit',
+			'click #noEdit'			: 'done'
 		},
 		template: _.template(	"<p id='fullName'><%= fullName %></p>"+
 													"<p id='phoneNumber'><%= phoneNumber %></p>"+
 													"<p id='streetAddress'><%= streetAddress %></p>"+
 													"<p id='city'><%= city %></p>"+
 													"<p id='state'><%= state %></p>"+
-													"<p id='zipCode'><%= zipCode %></p>" ),
+													"<p id='zipCode'><%= zipCode %></p>"+
+													'<div id="change">edit</div>'),
+		editTemplate: _.template(	'<form class="editing">'+
+															'<input type="text" name="fullName" value="<%= fullName %>">'+
+															'<input type="text" name="phoneNumber" value="<%= phoneNumber %>">'+
+															'<input type="text" name="streetAddress" value="<%= streetAddress %>">'+
+															'<input type="text" name="city" value="<%= city %>">'+
+															'<input type="text" name="state" value="<%= state %>">'+
+															'<input type="text" name="zipCode" value="<%= zipCode %>">'+
+															'<div id="noEdit">done</div>'+
+															'</form>'),
 		render: function(){
 			var attributes = this.model.toJSON();
 			this.$el.html(this.template(attributes));
@@ -60,6 +72,25 @@ $(document).ready(function(){
 			$(this.$el).fadeOut('fast', function(){
 				$(this).remove();
 			});
+		},
+		edit: function(){
+			var attributes = this.model.toJSON();
+			this.$el.html(this.editTemplate(attributes));
+		},
+		done: function(){
+			var contact = {
+				fullName			: $('.editing>input[name="fullName"]').val(),
+				phoneNumber		: $('.editing>input[name="phoneNumber"]').val(),
+				streetAddress	: $('.editing>input[name="streetAddress"]').val(),
+				city					: $('.editing>input[name="city"]').val(),
+				state					: $('.editing>input[name="state"]').val(),
+				zipCode				: $('.editing>input[name="zipCode"]').val()
+			};
+			console.log(contact);
+			this.model.set(contact);
+			this.model.save();
+			var attributes = this.model.toJSON();
+			$(this.el).html(this.template(attributes));
 		}
 	});
 

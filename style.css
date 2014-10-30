@@ -1,5 +1,5 @@
 div.contactCard {
-	width: 100px;
+	width: 200px;
 	height: auto;
 	display: inline-block;
 	font-size: 14px;
@@ -18,4 +18,14 @@ p#fullName {
 
 form {
 	display: none;
+}
+form.editing{
+	display: inline-block;
+}
+
+form.editing > input {
+	width: auto;
+	height: 14px;
+	font-size: 14px;
+	display: inline-block;
 }
