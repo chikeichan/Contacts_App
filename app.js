@@ -117,6 +117,7 @@ $(document).ready(function(){
 				state					: $('input[name="state"]').val(),
 				zipCode				: $('input[name="zipCode"]').val()
 			};
+			$('form')[0].reset();
 			contacts.add(contact);
 		}
 	}));
