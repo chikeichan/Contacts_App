@@ -1,0 +1,21 @@
+div.contactCard {
+	width: 100px;
+	height: auto;
+	display: inline-block;
+	font-size: 14px;
+	border: 1px solid black;
+	margin: 5px;
+	padding: 5px;
+}
+
+p {
+	margin: 0px;
+}
+
+p#fullName {
+	font-weight: bold;
+}
+
+form {
+	display: none;
+}
