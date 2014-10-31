@@ -53,16 +53,16 @@ $(document).ready(function(){
 													"<p id='city'><%= city %></p>"+
 													"<p id='state'><%= state %></p>"+
 													"<p id='zipCode'><%= zipCode %></p>"+
-													'<div id="change">edit</div>'),
-		editTemplate: _.template(	'<form class="editing">'+
+													'<div id="change"><img src="edit_property.png" /></div>'),
+		editTemplate: _.template(	'<div class="editing">'+
 															'<input type="text" name="fullName" value="<%= fullName %>">'+
 															'<input type="text" name="phoneNumber" value="<%= phoneNumber %>">'+
 															'<input type="text" name="streetAddress" value="<%= streetAddress %>">'+
 															'<input type="text" name="city" value="<%= city %>">'+
 															'<input type="text" name="state" value="<%= state %>">'+
 															'<input type="text" name="zipCode" value="<%= zipCode %>">'+
-															'<div id="noEdit">done</div>'+
-															'</form>'),
+															'<div id="noEdit">&#10003</div>'+
+															'</div>'),
 		render: function(){
 			var attributes = this.model.toJSON();
 			this.$el.html(this.template(attributes));
@@ -75,7 +75,7 @@ $(document).ready(function(){
 		},
 		edit: function(){
 			var attributes = this.model.toJSON();
-			this.$el.html(this.editTemplate(attributes));
+			this.$el.append(this.editTemplate(attributes));
 		},
 		done: function(){
 			var contact = {
@@ -120,15 +120,15 @@ $(document).ready(function(){
 			contacts.fetch();
 		},
 		render: function(){
-			this.$el.append('<div id="create">CREATE</div>');
-			this.$el.append(	'<form>'+
-													'<p id="title">Full name</p><input type="text" name="fullName">'+
-													'<p id="title">Phone Number</p><input type="text" name="phoneNumber">'+
-													'<p id="title">Street Address</p><input type="text" name="streetAddress">'+
-													'<p id="title">City</p><input type="text" name="city">'+
-													'<p id="title">State</p><input type="text" name="state">'+
-													'<p id="title">Zip Code</p><input type="text" name="zipCode">'+
-													'<div id="submit">submit</div>'+
+			this.$el.append('<div id="create"><img src="add184.png" /></div>');
+			this.$el.append(	'<form class="create">'+
+													'<input type="text" name="fullName" placeholder="Full Name">'+
+													'<input type="text" name="phoneNumber" placeholder="Phone Number">'+
+													'<input type="text" name="streetAddress" placeholder="Street">'+
+													'<input type="text" name="city" placeholder="City">'+
+													'<input type="text" name="state" placeholder="State">'+
+													'<input type="text" name="zipCode" placeholder="Zip Code">'+
+													'<div id="submit">&#10003</div>'+
 													'</form>');
 			this.$el.append(contactsView.el);
 		}, 
@@ -138,6 +138,7 @@ $(document).ready(function(){
 		},
 		showIt: function(){
 			$('form').toggle();
+			$('img').toggleClass('selected');
 		},
 		submit: function(){
 			var contact = {
