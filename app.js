@@ -61,7 +61,7 @@ $(document).ready(function(){
 															'<input type="text" name="city" value="<%= city %>">'+
 															'<input type="text" name="state" value="<%= state %>">'+
 															'<input type="text" name="zipCode" value="<%= zipCode %>">'+
-															'<div id="noEdit">&#10003</div>'+
+															'<div id="noEdit"><img src="edit_property.png" /></div>'+
 															'</div>'),
 		render: function(){
 			var attributes = this.model.toJSON();
